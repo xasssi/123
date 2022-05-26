@@ -1,0 +1,42 @@
+﻿<Window x:Class="WatchShop_Vasilyev_isp27.DirWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WatchShop_Vasilyev_isp27"
+        mc:Ignorable="d"
+        Title="Справочники" Height="650" Width="1200" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/chasy-ciferblat-fon.jpg" Stretch="UniformToFill" />
+    </Window.Background>
+    <Grid Background="{StaticResource Backgaraund}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.6*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="44"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="44"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" Style="{StaticResource ResourceKey=LblFirst}" Content="Справочники"/>
+
+        <Button Grid.Row="1" Grid.Column="3" Style="{StaticResource ResourceKey=BtnOrdin}" Content="Бренд" x:Name="BrandWin" Click="BrandWin_Click"/>
+        <Button Grid.Row="2" Grid.Column="5" Style="{StaticResource ResourceKey=BtnOrdin}" Content="Назад" x:Name="BracMatWin" Click="BracMatWin_Click"/>
+        <Button Grid.Row="1" Grid.Column="4" Style="{StaticResource ResourceKey=BtnOrdin}" Content="Материал изделия" x:Name="BodyMatWin" Click="BodyMatWin_Click"/>
+        <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource ResourceKey=BtnOrdin}" Content="Вид изделия" x:Name="MechWin" Click="MechWin_Click"/>
+        <Button Grid.Row="2" Grid.Column="3" Style="{StaticResource ResourceKey=BtnOrdin}" Content="Поставщик" x:Name="SupplrWin" Click="SupplrWin_Click"/>
+        <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource ResourceKey=BtnOrdin}" Content="Сотрудники" x:Name="EmplWin" Click="EmplWin_Click"/>
+        <Button Grid.Row="2" Grid.Column="2" Style="{StaticResource ResourceKey=BtnOrdin}" Content="Категория" x:Name="GlassWin" Click="GlassWin_Click"/>
+        <Button Grid.Row="2" Grid.Column="4" Style="{StaticResource ResourceKey=BtnOrdin}" Content="Страна" x:Name="CountryWin" Click="CountryWin_Click"/>
+        <Button Grid.Row="1" Grid.Column="5" Style="{StaticResource ResourceKey=BtnOrdin}" Content="Изделия" x:Name="WatchWin" Click="WatchWin_Click"/>
+        <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource ResourceKey=BtnOrdin}" Content="Должность" x:Name="PositionWin" Click="PositionWin_Click"/>
+        <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource ResourceKey=BtnSys}" Content="Назад" x:Name="Backbtn" Click="Backbtn_Click"/>
+    </Grid>
+</Window>

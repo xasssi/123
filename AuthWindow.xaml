@@ -1,0 +1,39 @@
+﻿<Window x:Class="WatchShop_Vasilyev_isp27.AuthWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WatchShop_Vasilyev_isp27"
+        mc:Ignorable="d"
+        Title="Авторизация" Height="650" Width="1200" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/chasy-ciferblat-fon.jpg" Stretch="UniformToFill" />
+    </Window.Background>
+    <Grid Background="{StaticResource Backgaraund}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.6*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="44"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="44"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource ResourceKey=LblFirst}" Content="Авторизация"/>
+        <TextBlock Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Style="{StaticResource ResourceKey=TxtBlckFirst}" Height="100" Width="500" FontSize="24" TextAlignment="Center">
+            SunShain – это магазин самой большой коллекции роскошных ювелирных изделий как подлинных, так и коллекционных
+        </TextBlock>
+        <Label Grid.Row="1" Grid.Column="2" Content="Логин" Style="{StaticResource ResourceKey=LblSecond}"/>
+        <Label Grid.Row="2" Grid.Column="2" Content="Пароль" Style="{StaticResource ResourceKey=LblSecond}"/>
+        <TextBox Grid.Row="1" Grid.Column="3" x:Name="Login" Style="{StaticResource ResourceKey=TxtBxOrdin}" Text="{Binding Фамилия}"/>
+        <PasswordBox Grid.Row="2" Grid.Column="3" x:Name="Password" Style="{StaticResource ResourceKey=PswrdBxOrdin}"/>
+        <Button Grid.Row="3" Grid.Column="2" Style="{StaticResource ResourceKey=BtnOrdin}" Content="Выход" x:Name="OutBtn" Click="OutBtn_Click"/>
+        <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource ResourceKey=BtnOrdin}" Content="Вход" x:Name="AccessBtn" Click="AccessBtn_Click"/>
+    </Grid>
+</Window>

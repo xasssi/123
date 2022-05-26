@@ -1,0 +1,32 @@
+﻿<Window x:Class="WatchShop_Vasilyev_isp27.MainWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WatchShop_Vasilyev_isp27"
+        mc:Ignorable="d"
+        Title="Главное" Height="650" Width="1200" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/chasy-ciferblat-fon.jpg" Stretch="UniformToFill" />
+    </Window.Background>
+    <Grid Background="{StaticResource Backgaraund}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.6*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="44"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="44"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" Style="{StaticResource ResourceKey=LblFirst}" Content="Главное"/>
+
+        <Button Grid.Row="2" Grid.Column="2" Style="{StaticResource ResourceKey=BtnOrdin}" Content="Поставка" x:Name="SuppWin" Click="SuppWin_Click"/>
+        <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource ResourceKey=BtnSys}" Content="Назад" x:Name="Backbtn" Click="Backbtn_Click"/>
+        <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource ResourceKey=BtnOrdin}" Content="Продажи" x:Name="SalesWin" Click="SalesWin_Click_1"/>
+    </Grid>
+</Window>

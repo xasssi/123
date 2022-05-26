@@ -1,0 +1,35 @@
+﻿<Window x:Class="WatchShop_Vasilyev_isp27.CashierMenu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WatchShop_Vasilyev_isp27"
+        mc:Ignorable="d"
+        Title="Главное меню кассира" Height="650" Width="1200" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/chasy-ciferblat-fon.jpg" Stretch="UniformToFill" />
+    </Window.Background>
+    <Grid Background="{StaticResource Backgaraund}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.6*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="44"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="44"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" Style="{StaticResource ResourceKey=LblFirst}" Content="Брендовые часы"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1" Style="{StaticResource ResourceKey=TxtBlckFirst}" Height="100" Width="500" FontSize="24" TextAlignment="Center">
+            Главное меню кассира
+        </TextBlock>
+
+        <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource ResourceKey=BtnOrdin}" Content="Главное" x:Name="MainWin" Click="MainWin_Click"/>
+        <Button Grid.Row="2" Grid.Column="2" Style="{StaticResource ResourceKey=BtnOrdin}" Content="Справочники" x:Name="DirWin" Click="DirWin_Click"/>
+        <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource ResourceKey=BtnSys}" Content="Назад" x:Name="Backbtn" Click="Backbtn_Click"/>
+    </Grid>
+</Window>

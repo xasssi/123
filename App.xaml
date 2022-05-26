@@ -1,0 +1,128 @@
+﻿<Application x:Class="WatchShop_Vasilyev_isp27.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WatchShop_Vasilyev_isp27"
+             StartupUri="AuthWindow.xaml">
+    <Application.Resources>
+        <Style TargetType="Button" x:Key="BtnOrdin">
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="Width" Value="180"></Setter>
+            <Setter Property="Height" Value="60"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid MinHeight="15">
+                            <Border Background="#FFA018"
+                                  BorderThickness="1"
+                                  CornerRadius="5"/>
+                            <ContentPresenter Content="{TemplateBinding Content}"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="BtnSys">
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="Width" Value="180"></Setter>
+            <Setter Property="Height" Value="60"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid MinHeight="15">
+                            <Border Background="#4C55F0"
+                                  BorderThickness="1"
+                                  CornerRadius="5"/>
+                            <ContentPresenter Content="{TemplateBinding Content}"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Label" x:Key="LblFirst">
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="FontSize" Value="64"></Setter>
+            <Setter Property="Foreground" Value="#FFFEFEFE"></Setter>
+            <Setter Property="Typography.Capitals" Value="AllSmallCaps"></Setter>
+        </Style>
+        <Style TargetType="Label" x:Key="LblSecond">
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="Foreground" Value="#FFFEFEFE"></Setter>
+            <Setter Property="Typography.Capitals" Value="AllSmallCaps"></Setter>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="TxtBlckFirst">
+            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="FontSize" Value="32"></Setter>
+            <Setter Property="Foreground" Value="#FFFEFEFE"></Setter>
+            <Setter Property="Typography.Capitals" Value="AllSmallCaps"></Setter>
+            <Setter Property="TextWrapping" Value="WrapWithOverflow"></Setter>
+        </Style>
+        <Style TargetType="TextBox" x:Key="TxtBxOrdin">
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="Width" Value="180"></Setter>
+            <Setter Property="Height" Value="40"></Setter>
+            <Setter Property="Padding" Value="2"></Setter>
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="Foreground" Value="Black"></Setter>
+            <Setter Property="Typography.Capitals" Value="AllSmallCaps"></Setter>
+        </Style>
+        <Style TargetType="PasswordBox" x:Key="PswrdBxOrdin">
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="Width" Value="180"></Setter>
+            <Setter Property="Height" Value="40"></Setter>
+            <Setter Property="Padding" Value="2"></Setter>
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="Foreground" Value="Black"></Setter>
+            <Setter Property="Typography.Capitals" Value="AllSmallCaps"></Setter>
+        </Style>
+        <Style TargetType="ComboBox" x:Key="CmbBxOrdin">
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="Width" Value="180"></Setter>
+            <Setter Property="Height" Value="40"></Setter>
+            <Setter Property="Padding" Value="2"></Setter>
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="Foreground" Value="#FF585858"></Setter>
+            <Setter Property="Typography.Capitals" Value="AllSmallCaps"></Setter>
+        </Style>
+        <Style TargetType="DatePicker" x:Key="DatePicOrdin">
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="Width" Value="180"></Setter>
+            <Setter Property="Height" Value="40"></Setter>
+            <Setter Property="Padding" Value="2"></Setter>
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="Foreground" Value="#FF585858"></Setter>
+            <Setter Property="Typography.Capitals" Value="AllSmallCaps"></Setter>
+        </Style>
+        <Style TargetType="DataGrid" x:Key="DGOrdin">
+            <Setter Property="AutoGenerateColumns" Value="False"></Setter>
+            <Setter Property="SelectionMode" Value="Single"></Setter>
+            <Setter Property="ColumnWidth" Value="*"></Setter>
+            <Setter Property="CanUserAddRows" Value="False"></Setter>
+            <Setter Property="Background" Value="#99535353"></Setter>
+        </Style>
+        
+        <SolidColorBrush x:Key="Accent" Color="#4C55F0"/>
+        <SolidColorBrush x:Key="Button" Color="#FFA018"/>
+        <LinearGradientBrush x:Key="Backgaraund" EndPoint="0,1" StartPoint="1,0" >
+            <GradientStop Color="#FFA018" Offset="1"/>
+            <GradientStop Color="#4C55F0" Offset="0"/>
+        </LinearGradientBrush>
+
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+           
+        </Style>
+
+
+    </Application.Resources>
+</Application>
+
+<!--https://www.crownandcaliber.com/-->

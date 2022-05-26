@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="WatchShop_Vasilyev_isp27.ReceiptPDF"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WatchShop_Vasilyev_isp27"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" x:Name="DG">
+        <StackPanel>
+            <Label Foreground="Black" Style="{StaticResource ResourceKey=LblFirst}" Content="Квитанция о поставке"
+                       FontSize="40" HorizontalAlignment="Center">
+            </Label>
+
+            <StackPanel Orientation="Horizontal">
+                    <Label Foreground="Black" Style="{StaticResource ResourceKey=LblSecond}" Content="Дата:"></Label>
+                    <Label Foreground="Black" Style="{StaticResource ResourceKey=LblSecond}" Content="{Binding Дата}"></Label>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                    <Label Foreground="Black" Style="{StaticResource ResourceKey=LblSecond}" Content="Поставщик:"></Label>
+                    <Label Foreground="Black" Style="{StaticResource ResourceKey=LblSecond}" Content="{Binding Поставщик.Название}"></Label>
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal">
+                    <Label Foreground="Black" Style="{StaticResource ResourceKey=LblSecond}" Content="ИНН:"></Label>
+                    <Label Foreground="Black" Style="{StaticResource ResourceKey=LblSecond}" Content="{Binding Поставщик.ИНН}"></Label>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                    <Label Foreground="Black" Style="{StaticResource ResourceKey=LblSecond}" Content="БИК:"></Label>
+                    <Label Foreground="Black" Style="{StaticResource ResourceKey=LblSecond}" Content="{Binding Поставщик.БИК}"></Label>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                    <Label Foreground="Black" Style="{StaticResource ResourceKey=LblSecond}" Content="Телефон:"></Label>
+                    <Label Foreground="Black" Style="{StaticResource ResourceKey=LblSecond}" Content="{Binding Поставщик.Телефон}"></Label>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                    <Label Foreground="Black" Style="{StaticResource ResourceKey=LblSecond}" Content="Адрес:"></Label>
+                    <Label Foreground="Black" Style="{StaticResource ResourceKey=LblSecond}" Content="{Binding Поставщик.Адрес}"></Label>
+            </StackPanel>
+
+            <DataGrid ItemsSource="{Binding Состав_Поставки}" Style="{StaticResource ResourceKey=DGOrdin}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Название товара" Binding="{Binding Часы.Название}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Количество" Binding="{Binding Количество}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Цена за шт" Binding="{Binding Часы.Цена}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Сумма за товар" Binding="{Binding Sum}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel Orientation="Horizontal">
+                    <Label Foreground="Black" Style="{StaticResource ResourceKey=LblSecond}" Content="ИТОГ: " VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20" ></Label>
+                    <Label Foreground="Black" Style="{StaticResource ResourceKey=LblSecond}" x:Name="ItogBlock" Content="{Binding Itog}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"></Label>
+            </StackPanel>
+        </StackPanel>
+        </Grid>
+        <Button Grid.Row="1" HorizontalAlignment="Left" Width="120" Height="50" Margin="20 0 0 0" FontSize="16" Grid.Column="3" Style="{StaticResource ResourceKey=BtnSys}" Content="Сохранить" x:Name="Print" Click="Print_Click"/>
+    </Grid>
+</UserControl>
