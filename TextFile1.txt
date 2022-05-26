@@ -1,0 +1,367 @@
+Class
+    public class Notify : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            }
+        }
+    }
+
+
+
+    okno avtorizaci
+     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.6*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="44"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="44"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource ResourceKey=LblFirst}" Content="Авторизация"/>
+        <TextBlock Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Style="{StaticResource ResourceKey=TxtBlckFirst}" Height="100" Width="500" FontSize="24" TextAlignment="Center">
+          
+        </TextBlock>
+        <Label Grid.Row="1" Grid.Column="2" Content="Логин" Style="{StaticResource ResourceKey=LblSecond}"/>
+        <Label Grid.Row="2" Grid.Column="2" Content="Пароль" Style="{StaticResource ResourceKey=LblSecond}"/>
+        <TextBox Grid.Row="1" Grid.Column="3" x:Name="Login" Style="{StaticResource ResourceKey=TxtBxOrdin}" Text="{Binding Фамилия}"/>
+        <PasswordBox Grid.Row="2" Grid.Column="3" x:Name="Password" Style="{StaticResource ResourceKey=PswrdBxOrdin}"/>
+        <Button Grid.Row="3" Grid.Column="2" Style="{StaticResource ResourceKey=BtnOrdin}" Content="Выход" x:Name="OutBtn" Click="OutBtn_Click"/>
+        <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource ResourceKey=BtnOrdin}" Content="Вход" x:Name="AccessBtn" Click="AccessBtn_Click"/>
+    </Grid>
+
+
+
+    xaml
+
+      public partial class AuthWindow : Window
+    {
+        public AuthWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void OutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void AccessBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(Login.Text) || string.IsNullOrEmpty(Password.Password))
+                {
+                    MessageBox.Show("Введите логин и/или пароль!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                using (var BD = new ЮвелиркаEntities())
+                {
+                    var users = BD.Сотрудники.AsNoTracking().FirstOrDefault(u => u.Фамилия == Login.Text && u.Пароль == Password.Password);
+
+                    if (users == null)
+                    {
+                        MessageBox.Show("Пользователь не найден!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    else
+                    {
+                        switch (users.Должность.ID_Должность)
+                        {
+                            case 1:
+                                MessageBox.Show("Вы заходите как Адмнистратор!", "Информирование", MessageBoxButton.OK, MessageBoxImage.Information);
+                                AdminMenu w = new AdminMenu();
+                                w.Show();
+                                Close();
+                                break;
+
+                            case 2:
+                                MessageBox.Show("Вы заходите как Кассир!", "Информирование", MessageBoxButton.OK, MessageBoxImage.Information);
+                                CashierMenu ww = new CashierMenu();
+                                ww.Show();
+                                Close();
+                                break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Критический сбой в работе приложения!" + ex.Message.ToString(), "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+
+        admin menu
+
+        <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.6*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="44"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="44"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" Style="{StaticResource ResourceKey=LblFirst}" Content="Брендовые часы"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1" Style="{StaticResource ResourceKey=TxtBlckFirst}" Height="100" Width="500" FontSize="24" TextAlignment="Center">
+            Главное меню администратора
+        </TextBlock>
+
+        <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource ResourceKey=BtnOrdin}" Content="Главное" x:Name="MainWin" Click="MainWin_Click"/>
+        <Button Grid.Row="2" Grid.Column="2" Style="{StaticResource ResourceKey=BtnOrdin}" Content="Справочники" x:Name="DirWin" Click="DirWin_Click"/>
+        <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource ResourceKey=BtnSys}" Content="Назад" x:Name="Backbtn" Click="Backbtn_Click"/>
+    </Grid>
+
+
+    xaml admin menu 
+
+      public partial class AdminMenu : Window
+    {
+        public AdminMenu()
+        {
+            InitializeComponent();
+        }
+
+        private void MainWin_Click(object sender, RoutedEventArgs e)
+        {
+            MainWin w = new MainWin();
+            w.Show();
+            Close();
+        }
+
+        private void DirWin_Click(object sender, RoutedEventArgs e)
+        {
+            DirWin w = new DirWin();
+            w.Show();
+            Close();
+        }
+
+        private void Backbtn_Click(object sender, RoutedEventArgs e)
+        {
+            AuthWindow w = new AuthWindow();
+            w.Show();
+            Close();
+        }
+    }
+
+
+    okno vivoda 
+     <Grid Background="{StaticResource Backgaraund}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3.6*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="44"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="44"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource ResourceKey=LblFirst}" Content="Страна"/>
+
+            <Button Grid.Row="0" Grid.Column="3" Style="{StaticResource ResourceKey=BtnSys}" Content="Назад" x:Name="Exit" Click="Exit_Click"/>
+            <Button Grid.Row="0" Grid.Column="4" Style="{StaticResource ResourceKey=BtnSys}" Content="Удалить" x:Name="DeleteBrand" Click="DeleteBrand_Click"/>
+            <Button Grid.Row="0" Grid.Column="5" Style="{StaticResource ResourceKey=BtnSys}" Content="Добавить" x:Name="AddBrand" Click="AddBrand_Click"/>
+            <Grid Grid.Row="0" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Style="{StaticResource ResourceKey=LblSecond}" Content="Поиск по названию"/>
+                <TextBox Grid.Row="1" x:Name="TxtSearch" SelectionChanged="TxtSearch_SelectionChanged" Style="{StaticResource ResourceKey=TxtBxOrdin}"/>
+            </Grid>
+        </Grid>
+
+        <DataGrid Grid.Row="1" x:Name="DGCountry" Style="{StaticResource ResourceKey=DGOrdin}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding Название}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Изменить">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource ResourceKey=BtnSys}" Content="Изменить" Height="auto" x:Name="EditBrand" Click="EditBrand_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+
+
+    xaml 
+
+
+     public partial class CountryWin : Window
+    {
+        ЮвелиркаEntities context;
+        string currentLetter = "";
+
+        public CountryWin()
+        {
+            InitializeComponent();
+            context = new ЮвелиркаEntities();
+            ShowTable();
+        }
+
+        private void ShowTable()
+        {
+            DGCountry.ItemsSource = context.Страна.ToList();
+
+            string searchText = TxtSearch.Text;
+            List<Страна> ListVal = context.Страна.ToList();
+            ListVal = ListVal.Where(x => x.Название.ToLower().Contains(searchText.ToLower())).ToList();
+
+            if (currentLetter.Count() == 1)
+            {
+                ListVal = ListVal.Where(x => x.Название.Contains(currentLetter)).ToList();
+            }
+            DGCountry.ItemsSource = ListVal.OrderBy(x => x.Название).ToList();
+        }
+
+        private void AddBrand_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var newVal = new Страна();
+                context.Страна.Add(newVal);
+                var win = new AddCountryWin(context, newVal);
+                win.ShowDialog();
+                ShowTable();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Произошло исключение! " + ex.Message.ToString(), "Внимание!", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                DirWin mainWindow = new DirWin();
+                mainWindow.Show();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Произошло исключение! " + ex.Message.ToString(), "Внимание!", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void DeleteBrand_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var row = DGCountry.SelectedItem as Страна;
+
+                if (row == null)
+                {
+                    MessageBox.Show("Выберите значение из таблицы!");
+                    return;
+                }
+
+                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить эту запись?", "Удаление", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    context.Страна.Remove(row);
+                    context.SaveChanges();
+                    ShowTable();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Произошло исключение! " + ex.Message.ToString(), "Внимание!", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void EditBrand_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button Edit = sender as Button;
+                var newVal = Edit.DataContext as Страна;
+                var win = new AddCountryWin(context, newVal);
+                win.ShowDialog();
+                ShowTable();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Произошло исключение! " + ex.Message.ToString(), "Внимание!", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void TxtSearch_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            ShowTable();
+        }
+
+        dobavlenie 
+
+         <Grid Background="{StaticResource Backgaraund}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="1" Grid.Column="0" Content="Название" Style="{StaticResource ResourceKey=LblSecond}"/>
+
+        <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource ResourceKey=TxtBxOrdin}" Text="{Binding Название}"/>
+
+        <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource ResourceKey=BtnSys}" Content="Сохранить" x:Name="Save" Click="Save_Click"/>
+    </Grid>
+
+
+    xaml 
+
+
+      public partial class AddCountryWin : Window
+    {
+        ЮвелиркаEntities context;
+        public AddCountryWin(ЮвелиркаEntities context, Страна страна)
+        {
+            InitializeComponent();
+            this.context = context;
+            DataContext = страна;
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                context.SaveChanges();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Произошло исключение! " + ex.Message.ToString(), "Внимание!", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+    }
